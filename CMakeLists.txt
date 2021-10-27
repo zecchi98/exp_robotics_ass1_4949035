@@ -55,7 +55,7 @@ add_message_files(
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
-  hypothesis.srv
+  hypothesis_srv.srv
 )
 
 ## Generate actions in the 'action' folder

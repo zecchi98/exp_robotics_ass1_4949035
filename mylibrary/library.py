@@ -18,6 +18,7 @@ from armor_msgs.msg import *
 from armor_msgs.srv import * 
 from random import randint
 from exp_robotics_ass1_4949035.msg import hypothesis_msg as hypothesis_msg
+from exp_robotics_ass1_4949035.srv import *
 class hypothesis():
     person:str
     place:str
@@ -33,6 +34,18 @@ class hypothesis():
         print(self.weapon)
         print(self.person)
         print(self.hypothesis_code)
+class hypothesis_general():
+    def __init__(self,people,places,weapons):
+        super(hypothesis_general, self).__init__()
+        self.people=people
+        self.places=places
+        self.weapons=weapons
+        self.hypothesis_code="HP-1"
+    def print_data(self):
+        print(self.hypothesis_code)
+        print(self.people)
+        print(self.places)
+        print(self.weapons)
 
 class Armor_Communication():
     def __init__(self):
@@ -49,7 +62,9 @@ class Armor_Communication():
             req.primary_command_spec= 'FILE'
             req.secondary_command_spec= ''
             req.args= ['/root/ros_ws/src/exp_robotics_ass1_4949035/cluedo_ontology.owl', 'http://www.emarolab.it/cluedo-ontology', 'true', 'PELLET', 'true']
+            
             msg = self.armor_service(req)
+
         except rospy.ServiceException as e:
             print(e)
     def initialize_person(self,person):
@@ -308,9 +323,124 @@ class Armor_Communication():
         except rospy.ServiceException as e:
             print(e)
             return False
+    def make_PERSON_PLACE_WEAPON_as_DISJOINT(self):
+        try:
+            req=ArmorDirectiveReq()
+            req.client_name= 'tutorial'
+            req.reference_name= 'ontoTest'
+            req.command= 'DISJOINT'
+            req.primary_command_spec= 'IND'
+            req.secondary_command_spec= 'CLASS'
+            req.args= ['WEAPON']
+            msg = self.armor_service(req)
+        except rospy.ServiceException as e:
+            print(e)
+
+        try:
+            req=ArmorDirectiveReq()
+            req.client_name= 'tutorial'
+            req.reference_name= 'ontoTest'
+            req.command= 'DISJOINT'
+            req.primary_command_spec= 'IND'
+            req.secondary_command_spec= 'CLASS'
+            req.args= ['PERSON']
+            msg = self.armor_service(req)
+        except rospy.ServiceException as e:
+            print(e)
+        
+        try:
+            req=ArmorDirectiveReq()
+            req.client_name= 'tutorial'
+            req.reference_name= 'ontoTest'
+            req.command= 'DISJOINT'
+            req.primary_command_spec= 'IND'
+            req.secondary_command_spec= 'CLASS'
+            req.args= ['PLACE']
+            msg = self.armor_service(req)
+        except rospy.ServiceException as e:
+            print(e)
+    def obtain_all_inconsistent_hypothesis(self):
+        try:
+            req=ArmorDirectiveReq()
+            req.client_name= 'tutorial'
+            req.reference_name= 'ontoTest'
+            req.command= 'QUERY'
+            req.primary_command_spec= 'IND'
+            req.secondary_command_spec= 'CLASS'
+            req.args= ['INCONSISTENT']
+            msg = self.armor_service(req)
+            queries=msg.armor_response.queried_objects
+            cont=0
+            if len(queries)<=0:
+                return [],False
+            A=[0]*len(queries)
+            for query in queries:
+                results=query[40:]
+                results=results[:len(results)-1]
+                A[cont]=results
+                cont=cont+1
+            return A,True
+        except rospy.ServiceException as e:
+            print(e)
+            return [],False
+    def check_if_the_hypothesis_corresponding_to_an_ID_is_inconsistent(self,ID_hypo):
+        incons_hypo,bool=self.obtain_all_inconsistent_hypothesis()
+        #print(ID_hypo)
+        #print(incons_hypo)
+        if(len(incons_hypo)<=0):
+            return False
+        else:
+            for i in range(0,len(incons_hypo)):
+                #print("control:"+incons_hypo[i]+" " + ID_hypo)
+                if(incons_hypo[i]==ID_hypo):
+                    return True
+                
+        return False
+    def make_general_hypothesis(self,hypothesis_general):
+   
+        
+        
+        people=hypothesis_general.people
+        places=hypothesis_general.places
+        weapons=hypothesis_general.weapons
+        hypothesis_code=hypothesis_general.hypothesis_code
+        integer_hypo_code=int(hypothesis_code[2:])+1
 
 
+        
 
+        self.number_of_hypotheses_made=self.number_of_hypotheses_made+1
+        if len(people)==1:
+            self.__add_hypotheisis(hypothesis_code,'who',people[0])
+        if len(people)==2:
+            self.__add_hypotheisis(hypothesis_code,'who',people[0])
+            self.__add_hypotheisis(hypothesis_code,'who',people[1])
+
+        if len(places)==1:
+            self.__add_hypotheisis(hypothesis_code,'where',places[0])
+        if len(places)==2:
+            self.__add_hypotheisis(hypothesis_code,'where',places[0])
+            self.__add_hypotheisis(hypothesis_code,'where',places[1])
+        
+        if len(weapons)==1:
+            self.__add_hypotheisis(hypothesis_code,'what',weapons[0])
+        if len(weapons)==2:
+            self.__add_hypotheisis(hypothesis_code,'what',weapons[0])
+            self.__add_hypotheisis(hypothesis_code,'what',weapons[1])    
+    def __add_hypotheisis(self,hypothesis_code,property,value):
+        try:
+            req=ArmorDirectiveReq()
+            req.client_name= 'tutorial'
+            req.reference_name= 'ontoTest'
+            req.command= 'ADD'
+            req.primary_command_spec= 'OBJECTPROP'
+            req.secondary_command_spec= 'IND'
+            req.args= [property,hypothesis_code,value]
+            msg = self.armor_service(req)
+            
+        except rospy.ServiceException as e:
+            print(e)
+        self.reason()
 
 
 

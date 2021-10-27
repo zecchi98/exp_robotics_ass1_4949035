@@ -11,8 +11,11 @@ def handle_request(req):
   return TriggerResponse(success=True,message="OK")
 def initialize_people_weapons_places():
     global armor_library
+    print("bloccato")
     armor_library=Armor_Communication()
+    print("bloccato_ll")
     armor_library.load_file()
+    print("bloccato")
     armor_library.initialize_person('JIM')
     armor_library.initialize_person('OLIVER')
     armor_library.initialize_person('JACK')
@@ -33,6 +36,7 @@ def initialize_people_weapons_places():
     #armor_library.initialize_place('BEDROOM')
     #armor_library.initialize_place('GARAGE')
     #armor_library.initialize_place('BASEMENT')
+    armor_library.make_PERSON_PLACE_WEAPON_as_DISJOINT()
 
 def main():
   armor_library=Armor_Communication()

@@ -8,7 +8,7 @@ from random import randint
 
 def create_and_check_the_hypothesis():
   
-  hypo=armor_library.generate_random_hypo()
+  hypo=armor_library.generate_random_correct_hypo()
   
   if not armor_library.check_if_this_hypothesis_already_exist(hypo):
     armor_library.make_hypothesis(hypo)
@@ -18,21 +18,28 @@ def create_the_winner_hypothesis():
   global winner_hypothesis,winner_hypo_created_bool
   winner_hypo_created_bool=True
   print("Winner Hypo:")
-  winner_hypothesis=armor_library.generate_random_hypo()
+  winner_hypothesis=armor_library.generate_random_correct_hypo()
+  winner_hypothesis.print_data()
   return winner_hypothesis
 def handle_request(req):
 
   if not winner_hypo_created_bool: 
     create_the_winner_hypothesis()
 
-  hypothesis=create_and_check_the_hypothesis()
-  if hypothesis.are_person_place_and_weapon_the_same_as_in_another_hypothesis(winner_hypothesis):
+  hypo=hypothesis()
+  hypo.person=req.who
+  hypo.place=req.where
+  hypo.weapon=req.what
+  hypo.hypothesis_code=""
+  hypo.print_data()
+  if hypo.are_person_place_and_weapon_the_same_as_in_another_hypothesis(winner_hypothesis):
     success=True
     message='YOU WIN'
+    print(message)
   else:
-    success=True
+    success=False
     message='YOU DO NOT WIN'
-  return TriggerResponse(success,message)
+  return hypothesis_srvResponse(success)
 def initialization_oracle():
   global armor_library,winner_hypo_created_bool
 
@@ -44,7 +51,7 @@ def initialization_oracle():
 
   print('Waiting for initialization_service')
   rospy.wait_for_service('Initialization_service')
-  s = rospy.Service('Oracle_service', Trigger, handle_request)
+  s = rospy.Service('Oracle_service', hypothesis_srv, handle_request)
 
 def main():
   initialization_oracle()

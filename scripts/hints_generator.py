@@ -13,14 +13,13 @@ def initialization():
   armor_library=Armor_Communication()
 
   rospy.init_node('hints_generator')
-
-  print('Waiting for initializations')
-  
   rospy.wait_for_service('Initialization_service')
+  
   while not armor_library.check_if_armor_has_been_initialized():
+    print("Waiting the initialization")
+    time.sleep(3)
     nul=0
   
-  print('All intialization has been completed')
 def body():
   pub = rospy.Publisher('hint_topic', hypothesis_msg, queue_size=1)
   rate = rospy.Rate(1) # 10hz
@@ -55,7 +54,18 @@ def body():
     for i in range(num_who):
       msg.who_array.append(armor_library.generate_random_person())
     
-    
+    if(len(msg.where_array)>=2):
+      if(msg.where_array[0]==msg.where_array[1]):
+        msg.where_array.pop(0)
+
+    if(len(msg.what_array)>=2):
+      if(msg.what_array[0]==msg.what_array[1]):
+        msg.what_array.pop(0)
+
+    if(len(msg.who_array)>=2):
+      if(msg.who_array[0]==msg.who_array[1]):
+        msg.who_array.pop(0)
+
     
     pub.publish(msg)
     rate.sleep()
