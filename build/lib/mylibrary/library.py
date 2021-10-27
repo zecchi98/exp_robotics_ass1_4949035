@@ -17,6 +17,7 @@ from std_msgs.msg import String
 from armor_msgs.msg import * 
 from armor_msgs.srv import * 
 from random import randint
+from exp_robotics_ass1_4949035.msg import hypothesis_msg as hypothesis_msg
 class hypothesis():
     person:str
     place:str
@@ -258,7 +259,7 @@ class Armor_Communication():
                 return True
         
         return False
-    def generate_random_hypo(self):
+    def generate_random_correct_hypo(self):
 
         people=self.obtain_people()
         weapons=self.obtain_weapons()
@@ -270,8 +271,46 @@ class Armor_Communication():
         hypo.weapon=weapons[randint(0,len(weapons)-1)]
         hypo.place=places[randint(0,len(places)-1)]
         hypo.hypothesis_code='HP'+str(self.number_of_hypotheses_made)
-        hypo.print_data()
+        
         return hypo
+    def generate_random_place(self):
+        places=self.obtain_places()
+        return places[randint(0,len(places)-1)]
+    def generate_random_person(self):
+        people=self.obtain_people()
+        return people[randint(0,len(people)-1)] 
+    def generate_random_weapon(self):
+        weapons=self.obtain_weapons()
+        return weapons[randint(0,len(weapons)-1)]                
+    def check_if_the_hypothesis_msg_is_consistent(self,hypo_msg):
+        if len(hypo_msg.what_array)>1 :
+            return False
+        if len(hypo_msg.where_array)>1 :
+            return False
+        if len(hypo_msg.who_array)>1 :
+            return False
+        return True
+    def check_if_armor_has_been_initialized(self):
+        try:
+            req=ArmorDirectiveReq()
+            req.client_name= 'tutorial'
+            req.reference_name= 'ontoTest'
+            req.command= 'QUERY'
+            req.primary_command_spec= 'IND'
+            req.secondary_command_spec= 'CLASS'
+            req.args= ['PLACE']
+            msg = self.armor_service(req)
+            queries=msg.armor_response.queried_objects
+            if(len(queries))>0:
+                return True
+            else:
+                return False
+        except rospy.ServiceException as e:
+            print(e)
+            return False
 
-                    
- 
+
+
+
+
+

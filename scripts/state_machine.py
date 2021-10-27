@@ -10,17 +10,17 @@ from mylibrary.library import *
 from std_srvs.srv import Trigger
 import time
 def initializaiton():
-  global match_is_not_over
-
+  global match_is_not_over,armor_library
+  armor_library=Armor_Communication()
   match_is_not_over=True
-
+  rospy.init_node('State_machine')
   rospy.wait_for_service('Initialization_service')
   rospy.wait_for_service('Oracle_service')
   
   try:
     request = rospy.ServiceProxy('Initialization_service',Trigger)
     resp1 = request()
-    print(resp1)
+    
   except rospy.ServiceException as e:
     print("Service call failed: %s"%e)
   
@@ -44,11 +44,20 @@ def create_and_check_the_new_hypothesis():
 
 
   return False
+def wait_for_a_complete_and_consistent_hypothesis():
+  consistent_found=False
+  while not consistent_found:
+    hypo_msg=rospy.wait_for_message('hint_topic',hypothesis_msg)
+    consistent_found=armor_library.check_if_the_hypothesis_msg_is_consistent(hypo_msg)
+    if(consistent_found):
+      print('The hint is complete and consistent')
+    else:
+      print('The hint is inconsistent')
 def state_machine():
   global match_is_not_over
   while match_is_not_over:
     move_to_a_place()
-    create_and_check_the_new_hypothesis()
+    wait_for_a_complete_and_consistent_hypothesis()
 def main():
   initializaiton()
   state_machine()

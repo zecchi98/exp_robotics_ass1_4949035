@@ -4,5 +4,6 @@
   	<node name="Oracle" pkg="exp_robotics_ass1_4949035" type="oracle.py" respawn="false" output="screen"></node>
   	<node name="Initialization" pkg="exp_robotics_ass1_4949035" type="Initialize_values.py" respawn="false" output="screen"></node>
   	<node name="state_machine" pkg="exp_robotics_ass1_4949035" type="state_machine.py" respawn="false" output="screen"></node>
+	<node name="Hints_generator" pkg="exp_robotics_ass1_4949035" type="hints_generator.py" respawn="false" output="screen"></node>
 
 </launch>
