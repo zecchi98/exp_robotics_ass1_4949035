@@ -14,35 +14,36 @@ def initializaiton():
   global match_is_not_over,armor_library
   armor_library=Armor_Communication()
   match_is_not_over=True
+  rospy.set_param("Send_hint",False)
   rospy.init_node('State_machine')
   rospy.wait_for_service('Initialization_service')
   rospy.wait_for_service('Oracle_service')
-  
   try:
     request = rospy.ServiceProxy('Initialization_service',Trigger)
     resp1 = request()
     
   except rospy.ServiceException as e:
     print("Service call failed: %s"%e)
-  
-
-def move_to_a_place():
-  print('I am moving to the next place')
-  #time.sleep(2)
+def move_to_a_place(place):
+  rospy.set_param("Send_hint",False)
+  print('I am moving to '+place)
+  time.sleep(1)
   print('I am ready to make hypotheses')
   #stampa il nome della stanza
+  rospy.set_param("Send_hint",True)
 def check_the_new_hypothesis(general_hypo):
   global match_is_not_over
   try:
     request = rospy.ServiceProxy('Oracle_service',hypothesis_srv)
     
     resp1 = request(general_hypo.places[0],general_hypo.weapons[0],general_hypo.people[0])
-    print(resp1)
+    #print(resp1)
     if resp1.success:
       match_is_not_over=False
       return True
   except rospy.ServiceException as e:
     print("Service call failed: %s"%e)
+    
 
 
   return False
@@ -59,17 +60,21 @@ def wait_for_a_complete_and_consistent_hypothesis():
     inconsistent_found=armor_library.check_if_the_hypothesis_corresponding_to_an_ID_is_inconsistent(h.hypothesis_code)
     #consistent_found=armor_library.check_if_the_hypothesis_msg_is_consistent(hypo_msg)
     if(not inconsistent_found):
-      print('The hint is complete and consistent')
-      print("Hint: "+h.people[0]+" has killed with a " + h.weapons[0]+" in the "+h.places[0])
+      #print('The hint is complete and consistent')
+      print("\nYou received an hint: "+h.people[0]+" has killed with a " + h.weapons[0]+" in the "+h.places[0]+"\n")
       return h
     else:
-      print('The hint is inconsistent')
+      print('The hint you received is inconsistent')
 def state_machine():
   global match_is_not_over
+
+  move_to_a_place("HOME")
   while match_is_not_over:
-    move_to_a_place()
     hypothesis=wait_for_a_complete_and_consistent_hypothesis()
+    move_to_a_place(hypothesis.places[0])
     check_the_new_hypothesis(hypothesis)
+  move_to_a_place("HOME")
+  print("The last hint was correct, you win")
 def main():
   
   initializaiton()

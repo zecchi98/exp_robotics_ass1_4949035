@@ -279,8 +279,8 @@ class Armor_Communication():
         people=self.obtain_people()
         weapons=self.obtain_weapons()
         places=self.obtain_places()
-        print(places)
-        print(len(places))
+        #print(places)
+        #print(len(places))
         hypo=hypothesis()
         hypo.person=people[randint(0,len(people)-1)]
         hypo.weapon=weapons[randint(0,len(weapons)-1)]

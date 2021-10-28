@@ -5,17 +5,13 @@ from os import sched_setscheduler
 from mylibrary.library import *
 from std_srvs.srv import Trigger,TriggerResponse
 def handle_request(req):
-  print("Message received")
   initialize_people_weapons_places()
   print("The owl file has been initialized")
   return TriggerResponse(success=True,message="OK")
 def initialize_people_weapons_places():
     global armor_library
-    print("bloccato")
     armor_library=Armor_Communication()
-    print("bloccato_ll")
     armor_library.load_file()
-    print("bloccato")
     armor_library.initialize_person('JIM')
     armor_library.initialize_person('OLIVER')
     armor_library.initialize_person('JACK')
