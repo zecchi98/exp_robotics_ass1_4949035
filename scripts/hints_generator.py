@@ -14,7 +14,7 @@ def initialization():
 
   rospy.init_node('hints_generator')
   rospy.wait_for_service('Initialization_service')
-  
+  rospy.set_param("Hint_ready",False)
   while not armor_library.check_if_armor_has_been_initialized():
     #print("Waiting the initialization")
     time.sleep(3)
@@ -23,12 +23,16 @@ def initialization():
 def body():
   pub = rospy.Publisher('hint_topic', hypothesis_msg, queue_size=1)
   rate = rospy.Rate(1) # 10hz
-  
-  while not rospy.is_shutdown():
+  we_win=False
+  while not rospy.is_shutdown() and not we_win:
     publish_allowed=rospy.get_param("Send_hint")
-    time.sleep(0.5)
+    print("waiting to send hint")
     if publish_allowed:
-      msg=hypothesis_msg()
+      print("sending hint")
+      rospy.set_param("Send_hint",False)
+      hypo=hypothesis_general()
+      hypo.hypothesis_code="HP"+str(armor_library.number_of_hypotheses_made)
+
       prob_what=randint(0,10)
       if(prob_what>1):
         num_what=1
@@ -49,28 +53,34 @@ def body():
         
 
       for i in range(num_where):
-        msg.where_array.append(armor_library.generate_random_place())
+        hypo.places.append(armor_library.generate_random_place())
 
       for i in range(num_what):
-        msg.what_array.append(armor_library.generate_random_weapon())
+        hypo.weapons.append(armor_library.generate_random_weapon())
 
       for i in range(num_who):
-        msg.who_array.append(armor_library.generate_random_person())
+        hypo.people.append(armor_library.generate_random_person())
       
-      if(len(msg.where_array)>=2):
-        if(msg.where_array[0]==msg.where_array[1]):
-          msg.where_array.pop(0)
+      if(len(hypo.places)>=2):
+        if(hypo.places[0]==hypo.places[1]):
+          hypo.places.pop(0)
 
-      if(len(msg.what_array)>=2):
-        if(msg.what_array[0]==msg.what_array[1]):
-          msg.what_array.pop(0)
+      if(len(hypo.weapons)>=2):
+        if(hypo.weapons[0]==hypo.weapons[1]):
+          hypo.weapons.pop(0)
 
-      if(len(msg.who_array)>=2):
-        if(msg.who_array[0]==msg.who_array[1]):
-          msg.who_array.pop(0)
+      if(len(hypo.people)>=2):
+        if(hypo.people[0]==hypo.people[1]):
+          hypo.people.pop(0)
 
-      
-      pub.publish(msg)
+
+      armor_library.make_general_hypothesis(hypo)
+
+      rospy.set_param("Actual_hint",hypo.hypothesis_code)
+      rospy.set_param("Hint_ready",True)
+      #pub.publish(msg)
+
+      we_win=rospy.get_param("WIN")
       rate.sleep()
 
 def main():

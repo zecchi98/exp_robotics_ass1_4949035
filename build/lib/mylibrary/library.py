@@ -41,6 +41,12 @@ class hypothesis_general():
         self.places=places
         self.weapons=weapons
         self.hypothesis_code="HP-1"
+    def __init__(self):
+        super(hypothesis_general, self).__init__()
+        self.people=[]
+        self.places=[]
+        self.weapons=[]
+        self.hypothesis_code="HP-1"
     def print_data(self):
         print(self.hypothesis_code)
         print(self.people)
@@ -242,6 +248,7 @@ class Armor_Communication():
 
         self.reason()
     def __struct_query_hypothesis(self,hypothesis_code,param):
+        
         try:
             req=ArmorDirectiveReq()
             req.client_name= 'tutorial'
@@ -251,8 +258,8 @@ class Armor_Communication():
             req.secondary_command_spec= 'IND'
             req.args= [param,hypothesis_code]
             msg = self.armor_service(req)
-            
             query=msg.armor_response.queried_objects[0]
+            
             results=query[40:]
             results=results[:len(results)-1]
             return results
@@ -427,6 +434,7 @@ class Armor_Communication():
         if len(weapons)==2:
             self.__add_hypotheisis(hypothesis_code,'what',weapons[0])
             self.__add_hypotheisis(hypothesis_code,'what',weapons[1])    
+        return hypothesis_general
     def __add_hypotheisis(self,hypothesis_code,property,value):
         try:
             req=ArmorDirectiveReq()
@@ -441,6 +449,21 @@ class Armor_Communication():
         except rospy.ServiceException as e:
             print(e)
         self.reason()
-
-
-
+    def from_hypo_code_to_hypothesis(self,hypothesis_code):
+        h=hypothesis()
+        h.person=self.from_hypothesis_code_to_who(hypothesis_code)
+        
+        h.place=self.from_hypothesis_code_to_where(hypothesis_code)
+        
+        h.weapon=self.from_hypothesis_code_to_what(hypothesis_code)
+        
+        h.hypothesis_code=hypothesis_code
+        return h
+        
+    def from_hypothesis_code_to_who(self,hypothesis_code):
+        return self.__struct_query_hypothesis(hypothesis_code,'who')
+    def from_hypothesis_code_to_what(self,hypothesis_code):
+        return self.__struct_query_hypothesis(hypothesis_code,'what')
+    def from_hypothesis_code_to_where(self,hypothesis_code):
+        return self.__struct_query_hypothesis(hypothesis_code,'where')
+    
