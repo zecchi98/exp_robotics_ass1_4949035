@@ -1,0 +1,60 @@
+\hypertarget{_initialize__values_8py}{}\doxysection{scripts/\+Initialize\+\_\+values.py File Reference}
+\label{_initialize__values_8py}\index{scripts/Initialize\_values.py@{scripts/Initialize\_values.py}}
+
+
+This file is used to create a server, which call will initialized the armor parameters.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{_initialize__values_8py_a55179235a0883a0c96e03e374e5beddd}{Initialize\+\_\+values.\+handle\+\_\+request}} (req)
+\begin{DoxyCompactList}\small\item\em This Function handle the request of the server by adding into the armor server\+: people,places,weapons. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_initialize__values_8py_a496d31cf3f6c92c6d08feaed8fb629d2}\label{_initialize__values_8py_a496d31cf3f6c92c6d08feaed8fb629d2}} 
+def \mbox{\hyperlink{_initialize__values_8py_a496d31cf3f6c92c6d08feaed8fb629d2}{Initialize\+\_\+values.\+initialize\+\_\+people\+\_\+weapons\+\_\+places}} ()
+\begin{DoxyCompactList}\small\item\em This Function will add to the server\+: people,places,weapons; And will make them disjoint With the next line we will put into the server\+: people, weapons and places. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_initialize__values_8py_a4b2252fb67003b3c430a012b876b1a3c}\label{_initialize__values_8py_a4b2252fb67003b3c430a012b876b1a3c}} 
+def \mbox{\hyperlink{_initialize__values_8py_a4b2252fb67003b3c430a012b876b1a3c}{Initialize\+\_\+values.\+main}} ()
+\begin{DoxyCompactList}\small\item\em This Function will initialize the node, the server and will wait for a service call Let\textquotesingle{}s declare the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file is used to create a server, which call will initialized the armor parameters. 
+
+\begin{DoxyAuthor}{Author}
+Federico Zecchi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31/10/2021
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Publishes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Service \+: ~\newline
+ \mbox{[}Initialization\+\_\+service\mbox{]} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_initialize__values_8py_a55179235a0883a0c96e03e374e5beddd}\label{_initialize__values_8py_a55179235a0883a0c96e03e374e5beddd}} 
+\index{Initialize\_values.py@{Initialize\_values.py}!handle\_request@{handle\_request}}
+\index{handle\_request@{handle\_request}!Initialize\_values.py@{Initialize\_values.py}}
+\doxysubsubsection{\texorpdfstring{handle\_request()}{handle\_request()}}
+{\footnotesize\ttfamily def Initialize\+\_\+values.\+handle\+\_\+request (\begin{DoxyParamCaption}\item[{}]{req }\end{DoxyParamCaption})}
+
+
+
+This Function handle the request of the server by adding into the armor server\+: people,places,weapons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request to the server (Trigger srv) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Trigger\+Response It will communicate that the initialization has been completed With the next line we will put into the server\+: people, weapons and places 
+\end{DoxyReturn}

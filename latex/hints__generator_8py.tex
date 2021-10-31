@@ -1,0 +1,53 @@
+\hypertarget{hints__generator_8py}{}\doxysection{scripts/hints\+\_\+generator.py File Reference}
+\label{hints__generator_8py}\index{scripts/hints\_generator.py@{scripts/hints\_generator.py}}
+
+
+This file is used to generate random hint and communicate them to the state machine node hypothesis.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{hints__generator_8py_a24964ae33b621b49833c34668c105f01}\label{hints__generator_8py_a24964ae33b621b49833c34668c105f01}} 
+def \mbox{\hyperlink{hints__generator_8py_a24964ae33b621b49833c34668c105f01}{hints\+\_\+generator.\+initialization}} ()
+\begin{DoxyCompactList}\small\item\em This function will initialize the node and wait for the initilization of the armor server by another node. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{hints__generator_8py_a575685c347e8a83b54151e1a139ee184}{hints\+\_\+generator.\+body}} ()
+\begin{DoxyCompactList}\small\item\em This function will generate a random hypothesis which can be consistent or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hints__generator_8py_a16a844515ff9c926c6b1a82b2b1c4e18}\label{hints__generator_8py_a16a844515ff9c926c6b1a82b2b1c4e18}} 
+def \mbox{\hyperlink{hints__generator_8py_a16a844515ff9c926c6b1a82b2b1c4e18}{hints\+\_\+generator.\+main}} ()
+\begin{DoxyCompactList}\small\item\em This Function will call the initialization and body functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file is used to generate random hint and communicate them to the state machine node hypothesis. 
+
+\begin{DoxyAuthor}{Author}
+Federico Zecchi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31/10/2021
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Publishes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Service \+: ~\newline
+ \mbox{[}Initialization\+\_\+service\mbox{]} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hints__generator_8py_a575685c347e8a83b54151e1a139ee184}\label{hints__generator_8py_a575685c347e8a83b54151e1a139ee184}} 
+\index{hints\_generator.py@{hints\_generator.py}!body@{body}}
+\index{body@{body}!hints\_generator.py@{hints\_generator.py}}
+\doxysubsubsection{\texorpdfstring{body()}{body()}}
+{\footnotesize\ttfamily def hints\+\_\+generator.\+body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function will generate a random hypothesis which can be consistent or not. 
+
+Then it will communicate it to the state machine thanks to the ros parameter server 

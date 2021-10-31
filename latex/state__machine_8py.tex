@@ -1,0 +1,101 @@
+\hypertarget{state__machine_8py}{}\doxysection{scripts/state\+\_\+machine.py File Reference}
+\label{state__machine_8py}\index{scripts/state\_machine.py@{scripts/state\_machine.py}}
+
+
+This file is used as the mind of the project. It will call all the services it needs to complete the cluedo game hypothesis.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{state__machine_8py_aa722b30856dd268213f628ce4f0e9a2e}{state\+\_\+machine.\+initializaiton}} ()
+\begin{DoxyCompactList}\small\item\em Initialization of the node state\+\_\+machine, and of some servers parameters. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{state__machine_8py_aa5d220735663b15b1f33dc2a094fb225}{state\+\_\+machine.\+move\+\_\+to\+\_\+a\+\_\+place}} (place)
+\begin{DoxyCompactList}\small\item\em this function will simulate the robot movement to the room \char`\"{}place\char`\"{} by sleeping 1 second \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{state__machine_8py_a3f7cea809cc272ab0594ef5e1dc55646}{state\+\_\+machine.\+check\+\_\+the\+\_\+new\+\_\+hypothesis}} (hypo)
+\begin{DoxyCompactList}\small\item\em Check if the input hypothesis is a winner one by calling the oracle. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{state__machine_8py_af778ada8133ecd3cbd1f82d8c2218230}{state\+\_\+machine.\+wait\+\_\+for\+\_\+a\+\_\+complete\+\_\+and\+\_\+consistent\+\_\+hypothesis}} ()
+\begin{DoxyCompactList}\small\item\em this function will wait to receive an hypothesis, then it will check if it is consistent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{state__machine_8py_a7f88638c49fce04c85cc0f742b7d8c22}\label{state__machine_8py_a7f88638c49fce04c85cc0f742b7d8c22}} 
+def \mbox{\hyperlink{state__machine_8py_a7f88638c49fce04c85cc0f742b7d8c22}{state\+\_\+machine.\+state\+\_\+machine}} ()
+\begin{DoxyCompactList}\small\item\em until the match is not over, it will move to the home, wait for a consistent hypothesis, move to that localization, and then check if it is the winner hypothesis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{state__machine_8py_a5c680ce705e6052fa07c6cece21743d0}\label{state__machine_8py_a5c680ce705e6052fa07c6cece21743d0}} 
+def \mbox{\hyperlink{state__machine_8py_a5c680ce705e6052fa07c6cece21743d0}{state\+\_\+machine.\+main}} ()
+\begin{DoxyCompactList}\small\item\em This function will call the initialization and state machine functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file is used as the mind of the project. It will call all the services it needs to complete the cluedo game hypothesis. 
+
+\begin{DoxyAuthor}{Author}
+Federico Zecchi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31/10/2021
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Publishes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Service \+: ~\newline
+ \mbox{[}Initialization\+\_\+service\mbox{]}\mbox{[}Oracle\+\_\+service\mbox{]} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{state__machine_8py_a3f7cea809cc272ab0594ef5e1dc55646}\label{state__machine_8py_a3f7cea809cc272ab0594ef5e1dc55646}} 
+\index{state\_machine.py@{state\_machine.py}!check\_the\_new\_hypothesis@{check\_the\_new\_hypothesis}}
+\index{check\_the\_new\_hypothesis@{check\_the\_new\_hypothesis}!state\_machine.py@{state\_machine.py}}
+\doxysubsubsection{\texorpdfstring{check\_the\_new\_hypothesis()}{check\_the\_new\_hypothesis()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+check\+\_\+the\+\_\+new\+\_\+hypothesis (\begin{DoxyParamCaption}\item[{}]{hypo }\end{DoxyParamCaption})}
+
+
+
+Check if the input hypothesis is a winner one by calling the oracle. 
+
+Then it will modify consequently the \char`\"{}match\+\_\+is\+\_\+over\char`\"{} global variable 
+\begin{DoxyParams}{Parameters}
+{\em hypo} & is the hypothesis you need to evaluate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{state__machine_8py_aa722b30856dd268213f628ce4f0e9a2e}\label{state__machine_8py_aa722b30856dd268213f628ce4f0e9a2e}} 
+\index{state\_machine.py@{state\_machine.py}!initializaiton@{initializaiton}}
+\index{initializaiton@{initializaiton}!state\_machine.py@{state\_machine.py}}
+\doxysubsubsection{\texorpdfstring{initializaiton()}{initializaiton()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+initializaiton (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialization of the node state\+\_\+machine, and of some servers parameters. 
+
+It will call the Initialization service to initialize all the armor parameters \mbox{\Hypertarget{state__machine_8py_aa5d220735663b15b1f33dc2a094fb225}\label{state__machine_8py_aa5d220735663b15b1f33dc2a094fb225}} 
+\index{state\_machine.py@{state\_machine.py}!move\_to\_a\_place@{move\_to\_a\_place}}
+\index{move\_to\_a\_place@{move\_to\_a\_place}!state\_machine.py@{state\_machine.py}}
+\doxysubsubsection{\texorpdfstring{move\_to\_a\_place()}{move\_to\_a\_place()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+move\+\_\+to\+\_\+a\+\_\+place (\begin{DoxyParamCaption}\item[{}]{place }\end{DoxyParamCaption})}
+
+
+
+this function will simulate the robot movement to the room \char`\"{}place\char`\"{} by sleeping 1 second 
+
+
+\begin{DoxyParams}{Parameters}
+{\em place} & It\textquotesingle{}s the name of the place you want to move to it is just a sleep \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{state__machine_8py_af778ada8133ecd3cbd1f82d8c2218230}\label{state__machine_8py_af778ada8133ecd3cbd1f82d8c2218230}} 
+\index{state\_machine.py@{state\_machine.py}!wait\_for\_a\_complete\_and\_consistent\_hypothesis@{wait\_for\_a\_complete\_and\_consistent\_hypothesis}}
+\index{wait\_for\_a\_complete\_and\_consistent\_hypothesis@{wait\_for\_a\_complete\_and\_consistent\_hypothesis}!state\_machine.py@{state\_machine.py}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_a\_complete\_and\_consistent\_hypothesis()}{wait\_for\_a\_complete\_and\_consistent\_hypothesis()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+wait\+\_\+for\+\_\+a\+\_\+complete\+\_\+and\+\_\+consistent\+\_\+hypothesis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+this function will wait to receive an hypothesis, then it will check if it is consistent. 
+
+This function will return only if a consistent hypothesis has been received. Otherwise it will continue to loop \begin{DoxyReturn}{Returns}
+It will return the consistent hypothesis received from the hints generator 
+\end{DoxyReturn}

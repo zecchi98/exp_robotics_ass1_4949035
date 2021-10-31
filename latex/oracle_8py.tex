@@ -1,0 +1,63 @@
+\hypertarget{oracle_8py}{}\doxysection{scripts/oracle.py File Reference}
+\label{oracle_8py}\index{scripts/oracle.py@{scripts/oracle.py}}
+
+
+This file is used to create a server; Its call will check if the hypothesis in consideration is the winner one; The first time will also create the winner hypothesis.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{oracle_8py_a8e1940cfdb65370afcaaa0c5e4517a5d}\label{oracle_8py_a8e1940cfdb65370afcaaa0c5e4517a5d}} 
+def \mbox{\hyperlink{oracle_8py_a8e1940cfdb65370afcaaa0c5e4517a5d}{oracle.\+create\+\_\+the\+\_\+winner\+\_\+hypothesis}} ()
+\begin{DoxyCompactList}\small\item\em This Function will create the winner hypothesis. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{oracle_8py_a55e105ab39a22c1dd6f9832a11505187}{oracle.\+handle\+\_\+request}} (req)
+\begin{DoxyCompactList}\small\item\em This Function will handle the request of the server. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{oracle_8py_ab5a97dd62c9610ec49ee42c570d15ddb}\label{oracle_8py_ab5a97dd62c9610ec49ee42c570d15ddb}} 
+def \mbox{\hyperlink{oracle_8py_ab5a97dd62c9610ec49ee42c570d15ddb}{oracle.\+initialization\+\_\+oracle}} ()
+\begin{DoxyCompactList}\small\item\em This Function will initialize the node, and will wait the armor server to be initilized by the \char`\"{}\+Initialization\char`\"{} server. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{oracle_8py_a5ac7249c0bad890a9f43d54c5b413399}\label{oracle_8py_a5ac7249c0bad890a9f43d54c5b413399}} 
+def \mbox{\hyperlink{oracle_8py_a5ac7249c0bad890a9f43d54c5b413399}{oracle.\+main}} ()
+\begin{DoxyCompactList}\small\item\em This Function will call \char`\"{}initilization oracle\char`\"{} and then will wait for a service call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file is used to create a server; Its call will check if the hypothesis in consideration is the winner one; The first time will also create the winner hypothesis. 
+
+\begin{DoxyAuthor}{Author}
+Federico Zecchi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31/10/2021
+\end{DoxyDate}
+Subscribes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Publishes to\+: ~\newline
+ \mbox{[}None\mbox{]}
+
+Service \+: ~\newline
+ \mbox{[}Oracle\+\_\+service\mbox{]} \mbox{[}Initialization\+\_\+service\mbox{]} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{oracle_8py_a55e105ab39a22c1dd6f9832a11505187}\label{oracle_8py_a55e105ab39a22c1dd6f9832a11505187}} 
+\index{oracle.py@{oracle.py}!handle\_request@{handle\_request}}
+\index{handle\_request@{handle\_request}!oracle.py@{oracle.py}}
+\doxysubsubsection{\texorpdfstring{handle\_request()}{handle\_request()}}
+{\footnotesize\ttfamily def oracle.\+handle\+\_\+request (\begin{DoxyParamCaption}\item[{}]{req }\end{DoxyParamCaption})}
+
+
+
+This Function will handle the request of the server. 
+
+It will create the winner hypothesis if it hasn\textquotesingle{}t been done yet and will check if the hypothesis inside the req message is the same as the winner one. 
+\begin{DoxyParams}{Parameters}
+{\em req} & Request to the server (hypothesis\+\_\+srv srv) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+hypothesis\+\_\+srv\+Response It will communicate if the game has been completed If the winner hypothesis has not been created, we create it 
+\end{DoxyReturn}
