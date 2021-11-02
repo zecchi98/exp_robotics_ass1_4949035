@@ -384,9 +384,9 @@ class Armor_Communication():
         #@return the weapon you have generated
         weapons=self.obtain_weapons()
         return weapons[randint(0,len(weapons)-1)]                
-    def check_if_the_hypothesis_msg_is_consistent(self,hypo_msg):
+    def __check_if_the_hypothesis_msg_is_consistent(self,hypo_msg):
         ##
-        #\brief Check if the hypothesis you have inserted as input is consistent by checking the lenght of its arrays
+        #\brief Check if the hypothesis_MSG you have inserted as input is consistent by checking the lenght of its arrays
         #@return True or False
         if len(hypo_msg.what_array)>1 :
             return False
