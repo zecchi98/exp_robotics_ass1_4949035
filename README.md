@@ -49,11 +49,12 @@ This node is used to understand if the last hypothesis generated is the winner o
 This node is used to create hypotheses, it will insert them in the armor system and then will comunicate the ID to the state machine thanks to the parameter server.
 
 
-# Where to read the all documentation of the project?
-I have created a documentation in doxygen, which is stored in the "html" folder
-
-
 # State_machine node
 This node is core part of the project, it will call the initialization service and will wait for new hypothesis.
 It will check if the hypothesis received is consistent and in case of affertive response it will go to the particular location to check if it is also the winner one.
 The move_to_location method for the moment it's just a busy wait.
+
+
+# Where to read the all documentation of the project?
+I have created a documentation in doxygen, which is stored in the "html" folder
+https://zecchi98.github.io/exp_robotics_ass1_4949035/html/files.html
