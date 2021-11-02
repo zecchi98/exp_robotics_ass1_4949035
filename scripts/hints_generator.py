@@ -42,7 +42,7 @@ def initialization():
   rospy.wait_for_service('Initialization_service')
   Initialization_complete=rospy.get_param("Initialization_complete")
   while not Initialization_complete:
-    print(str(Initialization_complete))
+    #print(str(Initialization_complete))
     time.sleep(1)
     Initialization_complete=rospy.get_param("Initialization_complete")
 def body():
