@@ -60,6 +60,9 @@ The move_to_location method for the moment it's just a busy wait.
 # State diagram
 ![state diagram](https://user-images.githubusercontent.com/78590047/141750068-393cd9a9-690a-4091-93df-04d33447b49c.png)
 
+# Temporal diagram
+![temporal diagram](https://user-images.githubusercontent.com/78590047/141755697-11457d88-75d0-43ee-bf96-9c8c8c59851f.png)
+
 # Where to read the all documentation of the project?
 I have created a documentation in doxygen, which is stored in the "html" folder. The majority of the files documentation can be also see in the link below. Not all the links works, so I suggest to check also the "html" folder
 https://zecchi98.github.io/exp_robotics_ass1_4949035/html/files.html
