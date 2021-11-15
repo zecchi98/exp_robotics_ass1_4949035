@@ -54,6 +54,9 @@ This node is core part of the project, it will call the initialization service a
 It will check if the hypothesis received is consistent and in case of affertive response it will go to the particular location to check if it is also the winner one.
 The move_to_location method for the moment it's just a busy wait.
 
+# Component diagram
+
+[Component diagram.pdf](https://github.com/zecchi98/exp_robotics_ass1_4949035/files/7537091/Component.diagram.pdf)
 
 # Where to read the all documentation of the project?
 I have created a documentation in doxygen, which is stored in the "html" folder
