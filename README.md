@@ -73,6 +73,10 @@ In the diagram below all the nodes already explained will be connected
 As it is shown in the diagram, most of the nodes wait for the initialization of the "initializatioon_values" node. Then most of the code is directed and organized thanks to the "state_machine" node. 
 ![temporal diagram](https://user-images.githubusercontent.com/78590047/141755697-11457d88-75d0-43ee-bf96-9c8c8c59851f.png)
 
+# Screenshot of the working algorithm!
+[Screenshot from 2021-11-15 10-45-53](https://user-images.githubusercontent.com/78590047/141759875-264b3927-3e67-4c6f-a2be-1d3ac6e3674f.png)
+
+
 # Where to read the all documentation of the project?
 I have created a documentation in doxygen, which is stored in the "html" folder. The majority of the files documentation can be also see in the link below. Not all the links works, so I suggest to check also the "html" folder
 https://zecchi98.github.io/exp_robotics_ass1_4949035/html/files.html
