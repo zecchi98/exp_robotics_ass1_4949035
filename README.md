@@ -57,6 +57,9 @@ The move_to_location method for the moment it's just a busy wait.
 # Component diagram
 ![component diagram](https://user-images.githubusercontent.com/78590047/141748734-6a5c9d89-94f5-47c1-9927-444df0286691.PNG)
 
+# State diagram
+![state diagram](https://user-images.githubusercontent.com/78590047/141750068-393cd9a9-690a-4091-93df-04d33447b49c.png)
+
 # Where to read the all documentation of the project?
 I have created a documentation in doxygen, which is stored in the "html" folder
 https://zecchi98.github.io/exp_robotics_ass1_4949035/html/files.html
