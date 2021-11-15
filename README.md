@@ -55,9 +55,7 @@ It will check if the hypothesis received is consistent and in case of affertive 
 The move_to_location method for the moment it's just a busy wait.
 
 # Component diagram
-
-[Component diagram.pdf](https://github.com/zecchi98/exp_robotics_ass1_4949035/files/7537091/Component.diagram.pdf)
-![1008778](https://user-images.githubusercontent.com/78590047/141748541-09659ad5-2411-4518-82e7-1caee6723365.jpg)
+![component diagram](https://user-images.githubusercontent.com/78590047/141748734-6a5c9d89-94f5-47c1-9927-444df0286691.PNG)
 
 # Where to read the all documentation of the project?
 I have created a documentation in doxygen, which is stored in the "html" folder
