@@ -55,12 +55,14 @@ It will check if the hypothesis received is consistent and in case of affertive 
 The move_to_location method for the moment it's just a busy wait.
 
 # Component diagram
+In the diagram below all the nodes already explained will be connected
 ![component diagram](https://user-images.githubusercontent.com/78590047/141748734-6a5c9d89-94f5-47c1-9927-444df0286691.PNG)
 
 # State diagram
 ![state diagram](https://user-images.githubusercontent.com/78590047/141750068-393cd9a9-690a-4091-93df-04d33447b49c.png)
 
 # Temporal diagram
+As it is shown in the diagram, most of the nodes wait for the initialization of the "initializatioon_values" node. Then most of the code is directed and organized thanks to the "state_machine" node. 
 ![temporal diagram](https://user-images.githubusercontent.com/78590047/141755697-11457d88-75d0-43ee-bf96-9c8c8c59851f.png)
 
 # Where to read the all documentation of the project?
