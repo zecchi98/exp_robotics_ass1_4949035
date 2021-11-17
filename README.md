@@ -80,3 +80,7 @@ As it is shown in the diagram, most of the nodes wait for the initialization of 
 # Where to read the all documentation of the project?
 I have created a documentation in doxygen, which is stored in the "html" folder. The majority of the files documentation can be also seen in the link below. Not all the links works, so I suggest to check also the "html" folder
 https://zecchi98.github.io/exp_robotics_ass1_4949035/html/files.html
+
+# Author & Contacts
+Author: Federico Zecchi
+E-mail: zecchi.federico@hotmail.it  s4949035@studenti.unige.it
